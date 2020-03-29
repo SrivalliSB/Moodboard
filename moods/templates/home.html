@@ -1,0 +1,52 @@
+{% extends 'base1.html' %}
+{% block body %}
+
+<div class="container">
+	<form method="POST" action="/create_mood/">
+		{% csrf_token %}
+		<div class="row">
+		<div class="col-md-6">
+
+			<label>SELECT MOOD</label>
+			<select name="user_mood" class="form-control">
+				{% for mood in moods %}
+					<option value="{{mood.id}}">{{mood.title}}  {{mood.emoji}}</option>
+
+				{% endfor %}
+			</select>
+		</div>
+		<div class="col-md-6">
+			<label>SELECT ACTION</label>
+			<select name="user_action" class="form-control">
+				{% for action in actions %}
+					<option value="{{action.id}}">{{action.title}}  {{action.emoji}}</option>
+
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+	<br>
+	<label>WRITE A NOTE ABOUT YOUR MOOD</label>
+	<textarea name="note" class="form-control">
+		
+	</textarea>
+	<br>
+	<button type="submit" class="btn btn-danger" style="width: 180px; "> SUBMIT</button>
+</form>
+<br>
+<hr>
+<label>MY MOOD LOGS</label>
+{% for moodlog in moodlogs %}
+<div class="card" style="width: 100%; ">
+	
+	<div class="card-body">
+	 <label>{{moodlog.mood.title}}  {{moodlog.mood.emoji}}</label>
+	<label>{{moodlog.action.title}}  {{moodlog.action.emoji}}</label><br>
+
+	<p>{{moodlog.note}}</p>
+	</div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

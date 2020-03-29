@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container" style=" display: flex;justify-content: center; align-items: center; height: 80vh;">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+<form method="POST" action="/signup/">
+	{% csrf_token %}
+	<label>Username</label>
+	<br>
+	<input type="text" name="username" class="form-control">
+	<br>
+	<label>Password</label>
+	<br>
+	<input type="password" name="password" class="form-control">
+	<br>
+	<label>Email</label>
+	<br>
+	<input type="text" name="email" class="form-control">
+	<br>
+	<button type="submit" class="btn btn-success">SIGNUP</button>
+</form>
+</div>
+</div>
+</div>
+{% endblock %}
