@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
+from django.utils.text import slugify
 from moods.models import Mood,Action,Moodlog
-def home(request):
-	user = request.user
+def home(request,username):
+	user = request.user(slug=username)
 	moods =Mood.objects.all()
 	actions =Action.objects.all()
 	moodlogs  = Moodlog.objects.filter(user=user)
